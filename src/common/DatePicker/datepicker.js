@@ -7,7 +7,7 @@ import {
   Modal,
   TouchableHighlight,
   DatePickerAndroid,
-  TimePickerAndroid,
+  // TimePickerAndroid,
   DatePickerIOS,
   Platform,
   Animated,
@@ -39,6 +39,7 @@ class DatePicker extends Component {
       modalVisible: this.props.customVisibility ? this.props.isVisible : false,
       animatedHeight: new Animated.Value(0),
       allowPointerEvents: true,
+      isAndroidPicker: false,
     };
 
     this.getDate = this.getDate.bind(this);
@@ -83,7 +84,7 @@ class DatePicker extends Component {
         this.setState({modalVisible: visible});
       });
     }
-    if (this.props.customVisibility){
+    if (this.props.customVisibility) {
       this.props.onVisiblityChange(visible);
     }
   }

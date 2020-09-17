@@ -44,5 +44,6 @@ const styles = StyleSheet.create({
     width: wp(60),
     textAlign: 'center',
     marginTop: hp(30),
+    fontFamily: 'ArialRoundedMTBold',
   },
 });

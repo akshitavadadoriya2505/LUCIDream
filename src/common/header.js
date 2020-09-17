@@ -14,6 +14,7 @@ const Header = () => {
       <Text
         style={{
           fontSize: normalize(22),
+          fontFamily: 'ArialRoundedMTBold',
         }}>
         LUCIDream
       </Text>

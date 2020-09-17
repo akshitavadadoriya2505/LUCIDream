@@ -7,15 +7,15 @@ import {
   StyleSheet,
   ScrollView,
   TextInput,
+  Platform,
 } from 'react-native';
 import {color, hp, normalize, wp} from '../helper/responsive';
 import Header from '../common/header';
 import DatePicker from '../common/DatePicker/datepicker';
 import moment from 'moment';
+import DateTimePicker from '@react-native-community/datetimepicker';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
-
-// moment(new Date()).format('LT')
 
 const Setting = () => {
   const [data, setData] = useState({
@@ -29,9 +29,98 @@ const Setting = () => {
     volume: '70%',
   });
   const [isActive, setIsActive] = useState(true);
+  const [date, setDate] = useState(new Date(1598051730000));
+  const [mode, setMode] = useState('date');
+  const [show, setShow] = useState(false);
   const handleTextInput = (key, value) => {
     setData({...data, [key]: value});
   };
+  const showMode = (currentMode) => {
+    setShow(true);
+    setMode(currentMode);
+  };
+
+  const showTimepicker = () => {
+    showMode('time');
+  };
+
+  const renderIOSDatePicker = (item) => {
+    return (
+      <DatePicker
+        date={new Date()}
+        mode="time"
+        confirmBtnText="Confirm"
+        cancelBtnText="Cancel"
+        renderComponent={
+          <View
+            style={[
+              styles.textInputStyle,
+              {
+                width: '100%',
+                justifyContent: 'center',
+                alignItems: 'center',
+              },
+            ]}>
+            <Text>
+              {item === 'sleepTime'
+                ? data.sleepTime.toString()
+                : data.wakeTime.toString()}
+            </Text>
+          </View>
+        }
+        minuteInterval={1}
+        onPressConfirm={(datetime) =>
+          handleTextInput(
+            item === 'sleepTime' ? 'sleepTime' : 'wakeTime',
+            moment(datetime).format('LT'),
+          )
+        }
+      />
+    );
+  };
+
+  const renderAndroidPicker = (item) => {
+    return (
+      <View>
+        <View
+          style={[
+            styles.textInputStyle,
+            {
+              width: '100%',
+              justifyContent: 'center',
+              alignItems: 'center',
+            },
+          ]}>
+          <Pressable onPress={showTimepicker}>
+            <Text>
+              {item === 'sleepTime'
+                ? data.sleepTime.toString()
+                : data.wakeTime.toString()}
+            </Text>
+          </Pressable>
+        </View>
+        {show && (
+          <DateTimePicker
+            testID="dateTimePicker"
+            value={date}
+            mode={mode}
+            is24Hour={true}
+            display="default"
+            onChange={(event, selectedDate) => {
+              const currentDate = selectedDate || date;
+              setShow(Platform.OS === 'ios');
+              setDate(currentDate);
+              handleTextInput(
+                item === 'sleepTime' ? 'sleepTime' : 'wakeTime',
+                moment(currentDate).format('LT'),
+              );
+            }}
+          />
+        )}
+      </View>
+    );
+  };
+
   return (
     <>
       <SafeAreaView style={{backgroundColor: color.gray}} />
@@ -66,32 +155,9 @@ const Setting = () => {
                     borderRadius: hp(0.5),
                     overflow: 'hidden',
                   }}>
-                  <DatePicker
-                    date={new Date()}
-                    mode="time"
-                    confirmBtnText="Confirm"
-                    cancelBtnText="Cancel"
-                    renderComponent={
-                      <View
-                        style={[
-                          styles.textInputStyle,
-                          {
-                            width: '100%',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                          },
-                        ]}>
-                        <Text>{data.sleepTime.toString()}</Text>
-                      </View>
-                    }
-                    minuteInterval={1}
-                    onPressConfirm={(datetime) =>
-                      handleTextInput(
-                        'sleepTime',
-                        moment(datetime).format('LT'),
-                      )
-                    }
-                  />
+                  {(Platform.OS === 'ios' &&
+                    renderIOSDatePicker('sleepTime')) ||
+                    renderAndroidPicker('sleepTime')}
                 </View>
               </View>
             </View>
@@ -106,32 +172,8 @@ const Setting = () => {
                     borderRadius: hp(0.5),
                     overflow: 'hidden',
                   }}>
-                  <DatePicker
-                    date={new Date()}
-                    mode="datetime"
-                    confirmBtnText="Confirm"
-                    cancelBtnText="Cancel"
-                    renderComponent={
-                      <View
-                        style={[
-                          styles.textInputStyle,
-                          {
-                            width: '100%',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                          },
-                        ]}>
-                        <Text>{data.wakeTime.toString()}</Text>
-                      </View>
-                    }
-                    minuteInterval={1}
-                    onPressConfirm={(datetime) => {
-                      handleTextInput(
-                        'wakeTime',
-                        moment(datetime).format('LT'),
-                      );
-                    }}
-                  />
+                  {(Platform.OS === 'ios' && renderIOSDatePicker('wakeTime')) ||
+                    renderAndroidPicker('wakeTime')}
                 </View>
               </View>
             </View>
