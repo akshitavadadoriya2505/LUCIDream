@@ -8,3 +8,7 @@ Go to node_modules -> @react-native-community -> datetimepicker -> src -> timepi
  return NativeModules.RNTimePickerAndroid.open(options);
 to 
  return NativeModules.TimePickerAndroid.open(options);
+
+
+KEYSTORE password: 123456
+ALIAS: alias
