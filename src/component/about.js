@@ -8,7 +8,7 @@ import {
   ScrollView,
   Image,
 } from 'react-native';
-import {color, hp, normalize, wp} from '../helper/responsive';
+import {color, hp, isIOS, normalize, wp} from '../helper/responsive';
 import Header from '../common/header';
 
 const About = () => {
@@ -34,6 +34,7 @@ const About = () => {
                 width: '95%',
                 marginTop: hp(2),
                 fontWeight: '500',
+                fontFamily: isIOS ? 'ArialRoundedMTBold' : 'Arial_Rounded_MT',
               }}>
               The goal of the LUCIDream app is to help you take control of your
               dreams!
@@ -109,6 +110,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: hp(3),
     fontWeight: 'bold',
+    fontFamily: isIOS ? 'ArialRoundedMTBold' : 'Arial_Rounded_MT',
   },
   commonText: {
     color: color.white,
@@ -117,5 +119,6 @@ const styles = StyleSheet.create({
     marginTop: hp(2),
     fontSize: normalize(14),
     lineHeight: 28,
+    fontFamily: isIOS ? 'ArialRoundedMTBold' : 'Arial_Rounded_MT',
   },
 });

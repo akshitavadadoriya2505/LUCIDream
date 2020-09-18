@@ -1,4 +1,5 @@
 {
   "name": "LUCIDream",
-  "displayName": "LUCIDream"
+  "displayName": "LUCIDream",
+  "assetBundlePatterns":["assets/fonts/*"]
 }

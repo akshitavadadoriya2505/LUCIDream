@@ -10,7 +10,7 @@ const Tab = createBottomTabNavigator();
 export const BottomTab = () => {
   return (
     <Tab.Navigator
-      initialRouteName="Journal"
+      initialRouteName="Setting"
       tabBarOptions={{
         keyboardHidesTabBar: true,
         style: {height: hp(9), backgroundColor: color.gray},

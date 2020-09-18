@@ -9,7 +9,7 @@ import {
   TextInput,
   Platform,
 } from 'react-native';
-import {color, hp, normalize, wp} from '../helper/responsive';
+import {color, hp, isIOS, normalize, wp} from '../helper/responsive';
 import Header from '../common/header';
 import DatePicker from '../common/DatePicker/datepicker';
 import moment from 'moment';
@@ -198,6 +198,7 @@ const Setting = () => {
                   value={data.dayTimeCheck}
                   placeholder={data.dayTimeCheck.toString()}
                   style={styles.textInputStyle}
+                  keyboardType={'numeric'}
                   onChange={(text) => handleTextInput('dayTimeCheck', text)}
                 />
               </View>
@@ -211,7 +212,9 @@ const Setting = () => {
                   value={data.dayTimeSound}
                   placeholder={data.dayTimeSound}
                   style={styles.textInputStyle}
-                  onChange={(text) => handleTextInput('dayTimeSound', text)}
+                  onChange={(text) => {
+                    handleTextInput('dayTimeSound', text.nativeEvent.text)
+                  }}
                 />
               </View>
             </View>
@@ -224,6 +227,7 @@ const Setting = () => {
                   value={data.sleepCheck}
                   placeholder={data.sleepCheck.toString()}
                   style={styles.textInputStyle}
+                  keyboardType={'numeric'}
                   onChange={(text) => handleTextInput('sleepCheck', text)}
                 />
               </View>
@@ -237,7 +241,7 @@ const Setting = () => {
                   value={data.sleepSound}
                   placeholder={data.sleepSound}
                   style={styles.textInputStyle}
-                  onChange={(text) => handleTextInput('sleepSound', text)}
+                  onChange={(text) => handleTextInput('sleepSound', text.nativeEvent.text)}
                 />
               </View>
             </View>
@@ -250,7 +254,7 @@ const Setting = () => {
                   value={data.checkAudio}
                   placeholder={data.checkAudio}
                   style={styles.textInputStyle}
-                  onChange={(text) => handleTextInput('checkAudio', text)}
+                  onChange={(text) => handleTextInput('checkAudio', text.nativeEvent.text)}
                 />
               </View>
             </View>
@@ -263,7 +267,7 @@ const Setting = () => {
                   value={data.volume}
                   placeholder={data.volume}
                   style={styles.textInputStyle}
-                  onChange={(text) => handleTextInput('volume', text)}
+                  onChange={(text) => handleTextInput('volume', text.nativeEvent.text)}
                 />
               </View>
             </View>
@@ -317,12 +321,14 @@ const styles = StyleSheet.create({
     marginTop: hp(3),
     fontWeight: '500',
     textAlign: 'center',
+    fontFamily: isIOS ? 'ArialRoundedMTBold' : 'Arial_Rounded_MT',
   },
   queText: {
     color: color.white,
     fontSize: normalize(16),
     textAlign: 'right',
     paddingRight: wp(1.5),
+    fontFamily: isIOS ? 'ArialRoundedMTBold' : 'Arial_Rounded_MT',
   },
   textInputStyle: {
     backgroundColor: 'rgb(236, 236, 236)',
@@ -330,11 +336,14 @@ const styles = StyleSheet.create({
     height: hp(3),
     width: '60%',
     textAlign: 'center',
+    fontFamily: isIOS ? 'ArialRoundedMTBold' : 'Arial_Rounded_MT',
+    padding: 0,
   },
   textStyle: {
     textAlign: 'center',
     fontSize: normalize(16),
     overflow: 'hidden',
+    fontFamily: isIOS ? 'ArialRoundedMTBold' : 'Arial_Rounded_MT',
   },
   pressableComponent: {
     backgroundColor: 'rgb(236, 236, 236)',

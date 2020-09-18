@@ -5,6 +5,8 @@ import {BottomTab} from './bottomTab';
 
 const Stack = createStackNavigator();
 
+console.disableYellowBox = true;
+
 const AppNavigator = () => {
   return (
     <NavigationContainer>

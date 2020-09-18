@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, SafeAreaView, StatusBar, Text, StyleSheet} from 'react-native';
-import {color, hp, normalize, wp} from '../helper/responsive';
+import {color, hp, normalize, wp, isIOS} from '../helper/responsive';
 import Header from '../common/header';
 
 const Journal = () => {
@@ -36,14 +36,14 @@ const styles = StyleSheet.create({
     color: color.white,
     textAlign: 'center',
     marginTop: hp(3),
-    fontWeight: '500',
+    fontFamily: isIOS ? 'ArialRoundedMTBold' : 'Arial_Rounded_MT',
   },
   nextUpdateText: {
     color: 'rgb(255, 255, 0)',
-    fontSize: normalize(30),
-    width: wp(60),
+    fontSize: normalize(40),
+    width: wp(80),
     textAlign: 'center',
     marginTop: hp(30),
-    fontFamily: 'ArialRoundedMTBold',
+    fontFamily: isIOS ? 'InkFree' : 'Inkfree',
   },
 });

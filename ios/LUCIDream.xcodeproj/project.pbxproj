@@ -15,9 +15,10 @@
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* LUCIDreamTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* LUCIDreamTests.m */; };
+		3EE1A38FF5F047959EF3E65E /* Inkfree.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 567FD8F88E8640599F6ACF8A /* Inkfree.ttf */; };
 		5649D45554FA1EE2F22E6935 /* libPods-LUCIDream-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAFF3CD7EB736151B789E2D0 /* libPods-LUCIDream-tvOSTests.a */; };
+		64659AF575674C4B83C04CD8 /* Arial_Rounded_MT.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3E12382C0BD14927B4DDA97E /* Arial_Rounded_MT.ttf */; };
 		64AF7AF65E7B62E283EF553A /* libPods-LUCIDream-LUCIDreamTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1D8CD0D44825840BB8F650F /* libPods-LUCIDream-LUCIDreamTests.a */; };
-		65744DA325133C1D0024C78A /* Arial_Rounded_MT.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 65744DA225133C1D0024C78A /* Arial_Rounded_MT.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		85AC8C0361398D119B2D5237 /* libPods-LUCIDream.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A18975E2CB10A5A8847EB760 /* libPods-LUCIDream.a */; };
 		8F58D04984D2DEB1246E1225 /* libPods-LUCIDream-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D84E2CCED1AB874A90919010 /* libPods-LUCIDream-tvOS.a */; };
@@ -56,9 +57,10 @@
 		2D02E47B1E0B4A5D006451C7 /* LUCIDream-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LUCIDream-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* LUCIDream-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LUCIDream-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		331134535C8418C53C5EA7E3 /* Pods-LUCIDream.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LUCIDream.release.xcconfig"; path = "Target Support Files/Pods-LUCIDream/Pods-LUCIDream.release.xcconfig"; sourceTree = "<group>"; };
+		3E12382C0BD14927B4DDA97E /* Arial_Rounded_MT.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Arial_Rounded_MT.ttf; path = ../assets/fonts/Arial_Rounded_MT.ttf; sourceTree = "<group>"; };
 		43B69833DD4DA3333E6ECC1D /* Pods-LUCIDream-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LUCIDream-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-LUCIDream-tvOS/Pods-LUCIDream-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		514A87F6D9D78CFD42F915AC /* Pods-LUCIDream-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LUCIDream-tvOS.release.xcconfig"; path = "Target Support Files/Pods-LUCIDream-tvOS/Pods-LUCIDream-tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		65744DA225133C1D0024C78A /* Arial_Rounded_MT.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Arial_Rounded_MT.ttf; sourceTree = "<group>"; };
+		567FD8F88E8640599F6ACF8A /* Inkfree.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Inkfree.ttf; path = ../assets/fonts/Inkfree.ttf; sourceTree = "<group>"; };
 		7682F20AC103AC68C2F416FC /* Pods-LUCIDream.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LUCIDream.debug.xcconfig"; path = "Target Support Files/Pods-LUCIDream/Pods-LUCIDream.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = LUCIDream/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9F2976A0E454054BAE752883 /* Pods-LUCIDream-LUCIDreamTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LUCIDream-LUCIDreamTests.debug.xcconfig"; path = "Target Support Files/Pods-LUCIDream-LUCIDreamTests/Pods-LUCIDream-LUCIDreamTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -151,12 +153,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		65744DA125133C090024C78A /* fonts */ = {
+		4A96D7C7FAEF4BE7BE0D3720 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				65744DA225133C1D0024C78A /* Arial_Rounded_MT.ttf */,
+				3E12382C0BD14927B4DDA97E /* Arial_Rounded_MT.ttf */,
+				567FD8F88E8640599F6ACF8A /* Inkfree.ttf */,
 			);
-			path = fonts;
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -169,13 +172,13 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				65744DA125133C090024C78A /* fonts */,
 				13B07FAE1A68108700A75B9A /* LUCIDream */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* LUCIDreamTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				942B15CC4C4C15B1D202D434 /* Pods */,
+				4A96D7C7FAEF4BE7BE0D3720 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -351,8 +354,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
-				65744DA325133C1D0024C78A /* Arial_Rounded_MT.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				64659AF575674C4B83C04CD8 /* Arial_Rounded_MT.ttf in Resources */,
+				3EE1A38FF5F047959EF3E65E /* Inkfree.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -675,7 +679,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lucidream;
 				PRODUCT_NAME = LUCIDream;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -697,7 +701,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lucidream;
 				PRODUCT_NAME = LUCIDream;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
