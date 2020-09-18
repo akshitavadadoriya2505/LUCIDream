@@ -21,17 +21,19 @@ const Setting = () => {
   const [data, setData] = useState({
     sleepTime: moment(new Date()).format('LT'),
     wakeTime: moment(new Date()).format('LT'),
-    dayTimeCheck: 0,
-    dayTimeSound: '',
-    sleepCheck: 0,
-    sleepSound: '',
-    checkAudio: '',
-    volume: '70%',
+    dayTimeCheck: 3,
+    dayTimeSound: '5-Seconds',
+    sleepCheck: 5,
+    sleepSound: '10-Seconds',
+    checkAudio: 'Chimes',
+    volume: '75%',
   });
   const [isActive, setIsActive] = useState(true);
   const [date, setDate] = useState(new Date(1598051730000));
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
+  const [sleepTime, setSleepTime] = useState(false);
+  const [wakeTime, setWakeTime] = useState(false);
   const handleTextInput = (key, value) => {
     setData({...data, [key]: value});
   };
@@ -139,12 +141,7 @@ const Setting = () => {
               backgroundColor: color.black,
             }}>
             <Text style={styles.journalText}>Your Sleep Schedule</Text>
-            <View
-              style={{
-                flexDirection: 'row',
-                marginTop: hp(1),
-                alignItems: 'center',
-              }}>
+            <View style={styles.horizontalView}>
               <View style={{flex: 1}}>
                 <Text style={styles.queText}>Normally Sleep:</Text>
               </View>
@@ -156,12 +153,48 @@ const Setting = () => {
                     overflow: 'hidden',
                   }}>
                   {(Platform.OS === 'ios' &&
-                    renderIOSDatePicker('sleepTime')) ||
-                    renderAndroidPicker('sleepTime')}
+                    renderIOSDatePicker('sleepTime')) || (
+                    <View>
+                      <View
+                        style={[
+                          styles.textInputStyle,
+                          {
+                            width: '100%',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                          },
+                        ]}>
+                        <Pressable
+                          onPress={() => {
+                            setMode('time');
+                            setSleepTime(true);
+                          }}>
+                          <Text>{data.sleepTime}</Text>
+                        </Pressable>
+                      </View>
+                      {sleepTime && (
+                        <DateTimePicker
+                          testID="dateTimePicker"
+                          value={new Date()}
+                          mode={mode}
+                          is24Hour={true}
+                          display="default"
+                          onChange={(event, selectedDate) => {
+                            const currentDate = selectedDate || date;
+                            setSleepTime(false);
+                            handleTextInput(
+                              'sleepTime',
+                              moment(currentDate).format('LT'),
+                            );
+                          }}
+                        />
+                      )}
+                    </View>
+                  )}
                 </View>
               </View>
             </View>
-            <View style={{flexDirection: 'row', marginTop: hp(1)}}>
+            <View style={styles.horizontalView}>
               <View style={{flex: 1}}>
                 <Text style={styles.queText}>Normally Wake:</Text>
               </View>
@@ -172,8 +205,45 @@ const Setting = () => {
                     borderRadius: hp(0.5),
                     overflow: 'hidden',
                   }}>
-                  {(Platform.OS === 'ios' && renderIOSDatePicker('wakeTime')) ||
-                    renderAndroidPicker('wakeTime')}
+                  {(Platform.OS === 'ios' &&
+                    renderIOSDatePicker('wakeTime')) || (
+                    <View>
+                      <View
+                        style={[
+                          styles.textInputStyle,
+                          {
+                            width: '100%',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                          },
+                        ]}>
+                        <Pressable
+                          onPress={() => {
+                            setMode('time');
+                            setWakeTime(true);
+                          }}>
+                          <Text>{data.wakeTime}</Text>
+                        </Pressable>
+                      </View>
+                      {wakeTime && (
+                        <DateTimePicker
+                          testID="dateTimePicker"
+                          value={new Date()}
+                          mode={mode}
+                          is24Hour={true}
+                          display="default"
+                          onChange={(event, selectedDate) => {
+                            const currentDate = selectedDate || date;
+                            setWakeTime(false);
+                            handleTextInput(
+                              'wakeTime',
+                              moment(currentDate).format('LT'),
+                            );
+                          }}
+                        />
+                      )}
+                    </View>
+                  )}
                 </View>
               </View>
             </View>
@@ -189,7 +259,7 @@ const Setting = () => {
             <Text style={[styles.journalText, {marginTop: hp(5)}]}>
               Reality Check Options
             </Text>
-            <View style={{flexDirection: 'row', marginTop: hp(1)}}>
+            <View style={styles.horizontalView}>
               <View style={{flex: 1}}>
                 <Text style={styles.queText}>Daytime Checks:</Text>
               </View>
@@ -199,11 +269,13 @@ const Setting = () => {
                   placeholder={data.dayTimeCheck.toString()}
                   style={styles.textInputStyle}
                   keyboardType={'numeric'}
-                  onChange={(text) => handleTextInput('dayTimeCheck', text)}
+                  onChange={(text) =>
+                    handleTextInput('dayTimeCheck', text.nativeEvent.text)
+                  }
                 />
               </View>
             </View>
-            <View style={{flexDirection: 'row', marginTop: hp(1)}}>
+            <View style={styles.horizontalView}>
               <View style={{flex: 1}}>
                 <Text style={styles.queText}>Daytime Sound:</Text>
               </View>
@@ -213,12 +285,12 @@ const Setting = () => {
                   placeholder={data.dayTimeSound}
                   style={styles.textInputStyle}
                   onChange={(text) => {
-                    handleTextInput('dayTimeSound', text.nativeEvent.text)
+                    handleTextInput('dayTimeSound', text.nativeEvent.text);
                   }}
                 />
               </View>
             </View>
-            <View style={{flexDirection: 'row', marginTop: hp(1)}}>
+            <View style={styles.horizontalView}>
               <View style={{flex: 1}}>
                 <Text style={styles.queText}>Sleep Checks:</Text>
               </View>
@@ -228,11 +300,13 @@ const Setting = () => {
                   placeholder={data.sleepCheck.toString()}
                   style={styles.textInputStyle}
                   keyboardType={'numeric'}
-                  onChange={(text) => handleTextInput('sleepCheck', text)}
+                  onChange={(text) =>
+                    handleTextInput('sleepCheck', text.nativeEvent.text)
+                  }
                 />
               </View>
             </View>
-            <View style={{flexDirection: 'row', marginTop: hp(1)}}>
+            <View style={styles.horizontalView}>
               <View style={{flex: 1}}>
                 <Text style={styles.queText}>Sleep Sound:</Text>
               </View>
@@ -241,11 +315,13 @@ const Setting = () => {
                   value={data.sleepSound}
                   placeholder={data.sleepSound}
                   style={styles.textInputStyle}
-                  onChange={(text) => handleTextInput('sleepSound', text.nativeEvent.text)}
+                  onChange={(text) =>
+                    handleTextInput('sleepSound', text.nativeEvent.text)
+                  }
                 />
               </View>
             </View>
-            <View style={{flexDirection: 'row', marginTop: hp(1)}}>
+            <View style={styles.horizontalView}>
               <View style={{flex: 1}}>
                 <Text style={styles.queText}>Check Audio:</Text>
               </View>
@@ -254,11 +330,13 @@ const Setting = () => {
                   value={data.checkAudio}
                   placeholder={data.checkAudio}
                   style={styles.textInputStyle}
-                  onChange={(text) => handleTextInput('checkAudio', text.nativeEvent.text)}
+                  onChange={(text) =>
+                    handleTextInput('checkAudio', text.nativeEvent.text)
+                  }
                 />
               </View>
             </View>
-            <View style={{flexDirection: 'row', marginTop: hp(1)}}>
+            <View style={styles.horizontalView}>
               <View style={{flex: 1}}>
                 <Text style={styles.queText}>Volume:</Text>
               </View>
@@ -267,7 +345,9 @@ const Setting = () => {
                   value={data.volume}
                   placeholder={data.volume}
                   style={styles.textInputStyle}
-                  onChange={(text) => handleTextInput('volume', text.nativeEvent.text)}
+                  onChange={(text) =>
+                    handleTextInput('volume', text.nativeEvent.text)
+                  }
                 />
               </View>
             </View>
@@ -294,12 +374,12 @@ const Setting = () => {
                   setData({
                     sleepTime: moment(new Date()).format('LT'),
                     wakeTime: moment(new Date()).format('LT'),
-                    dayTimeCheck: 0,
-                    dayTimeSound: '',
-                    sleepCheck: 0,
-                    sleepSound: '',
-                    checkAudio: '',
-                    volume: '70%',
+                    dayTimeCheck: 3,
+                    dayTimeSound: '5-Seconds',
+                    sleepCheck: 5,
+                    sleepSound: '10-Seconds',
+                    checkAudio: 'Chimes',
+                    volume: '75%',
                   });
                 }}>
                 <Text style={styles.textStyle}>Recommended Settings</Text>
@@ -338,8 +418,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontFamily: isIOS ? 'ArialRoundedMTBold' : 'Arial_Rounded_MT',
     padding: 0,
+    color: color.black,
   },
   textStyle: {
+    color: color.black,
     textAlign: 'center',
     fontSize: normalize(16),
     overflow: 'hidden',
@@ -350,5 +432,10 @@ const styles = StyleSheet.create({
     width: '55%',
     paddingVertical: hp(0.5),
     borderRadius: hp(1),
+  },
+  horizontalView: {
+    flexDirection: 'row',
+    marginTop: hp(1),
+    alignItems: 'center',
   },
 });

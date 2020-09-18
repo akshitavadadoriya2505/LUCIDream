@@ -14,6 +14,7 @@ const Header = () => {
         style={{
           fontSize: normalize(35),
           fontFamily: isIOS ? 'InkFree' : 'Inkfree',
+          color: color.black,
         }}>
         LUCIDream
       </Text>
