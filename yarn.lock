@@ -1177,6 +1177,13 @@
   resolved "https://registry.yarnpkg.com/@react-native-community/masked-view/-/masked-view-0.1.10.tgz#5dda643e19e587793bc2034dd9bf7398ad43d401"
   integrity sha512-rk4sWFsmtOw8oyx8SD3KSvawwaK7gRBSEIy2TAwURyGt+3TizssXP1r8nx3zY+R7v2vYYHXZ+k2/GULAT/bcaQ==
 
+"@react-native-community/push-notification-ios@^1.4.0", "@react-native-community/push-notification-ios@^1.4.1":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@react-native-community/push-notification-ios/-/push-notification-ios-1.5.0.tgz#b41802b58d2388c8cb76cd219bbeec9ac9a4c06d"
+  integrity sha512-88Uwu6S8oRVnuMfBMGN+MtTyUjiVmMKwfObYrPmm+b2E2Aqk0WlZ4clfECukG8QIzv1pfELJZ5uZMVTYMI6klg==
+  dependencies:
+    invariant "^2.2.4"
+
 "@react-navigation/bottom-tabs@^5.8.0":
   version "5.8.0"
   resolved "https://registry.yarnpkg.com/@react-navigation/bottom-tabs/-/bottom-tabs-5.8.0.tgz#d7386809bceeead0adcaacf61b6563be9cefd5cb"
@@ -5711,6 +5718,13 @@ react-native-keyboard-aware-scroll-view@^0.9.2:
   dependencies:
     prop-types "^15.6.2"
     react-native-iphone-x-helper "^1.0.3"
+
+react-native-push-notification@^5.1.1:
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-push-notification/-/react-native-push-notification-5.1.1.tgz#104572ddc8c73b1a3a95c90e26d05800c51b12c5"
+  integrity sha512-CJmKqzM2P/s+a9PImoaiUN4TP1+K4YfmG1B0uUbavgFdGhTtRPTLLwDfFk2h3J6VmTXNak82rUz2iGwyptHm5w==
+  dependencies:
+    "@react-native-community/push-notification-ios" "^1.4.0"
 
 react-native-reanimated@^1.13.0:
   version "1.13.0"

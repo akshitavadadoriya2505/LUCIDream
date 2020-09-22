@@ -39,6 +39,12 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string/>
+  <key>UIBackgroundModes</key>
+  <array>
+    <string>fetch</string>
+    <string>processing</string>
+    <string>remote-notification</string>
+  </array>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Arial_Rounded_MT.ttf</string>

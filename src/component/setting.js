@@ -16,6 +16,7 @@ import moment from 'moment';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
+import PushNotification from 'react-native-push-notification';
 
 const Setting = () => {
   const [data, setData] = useState({
@@ -31,19 +32,24 @@ const Setting = () => {
   const [isActive, setIsActive] = useState(true);
   const [date, setDate] = useState(new Date(1598051730000));
   const [mode, setMode] = useState('date');
-  const [show, setShow] = useState(false);
   const [sleepTime, setSleepTime] = useState(false);
   const [wakeTime, setWakeTime] = useState(false);
   const handleTextInput = (key, value) => {
     setData({...data, [key]: value});
   };
-  const showMode = (currentMode) => {
-    setShow(true);
-    setMode(currentMode);
-  };
 
-  const showTimepicker = () => {
-    showMode('time');
+  const alarmReminder = (date) => {
+    let t1 = new Date();
+    let t2 = new Date(date);
+    let dif = t1.getTime() - t2.getTime();
+
+    let Seconds_from_T1_to_T2 = dif / 1000;
+    let Seconds_Between_Dates = Math.abs(Seconds_from_T1_to_T2);
+    console.log(Seconds_Between_Dates);
+    PushNotification.localNotificationSchedule({
+      message: 'Reality Check: look at your hands + read stuff!',
+      date: new Date(Date.now() + Seconds_Between_Dates * 1000),
+    });
   };
 
   const renderIOSDatePicker = (item) => {
@@ -71,55 +77,14 @@ const Setting = () => {
           </View>
         }
         minuteInterval={1}
-        onPressConfirm={(datetime) =>
+        onPressConfirm={(datetime) => {
           handleTextInput(
             item === 'sleepTime' ? 'sleepTime' : 'wakeTime',
             moment(datetime).format('LT'),
-          )
-        }
+          );
+          alarmReminder(datetime);
+        }}
       />
-    );
-  };
-
-  const renderAndroidPicker = (item) => {
-    return (
-      <View>
-        <View
-          style={[
-            styles.textInputStyle,
-            {
-              width: '100%',
-              justifyContent: 'center',
-              alignItems: 'center',
-            },
-          ]}>
-          <Pressable onPress={showTimepicker}>
-            <Text>
-              {item === 'sleepTime'
-                ? data.sleepTime.toString()
-                : data.wakeTime.toString()}
-            </Text>
-          </Pressable>
-        </View>
-        {show && (
-          <DateTimePicker
-            testID="dateTimePicker"
-            value={date}
-            mode={mode}
-            is24Hour={true}
-            display="default"
-            onChange={(event, selectedDate) => {
-              const currentDate = selectedDate || date;
-              setShow(Platform.OS === 'ios');
-              setDate(currentDate);
-              handleTextInput(
-                item === 'sleepTime' ? 'sleepTime' : 'wakeTime',
-                moment(currentDate).format('LT'),
-              );
-            }}
-          />
-        )}
-      </View>
     );
   };
 
@@ -186,6 +151,7 @@ const Setting = () => {
                               'sleepTime',
                               moment(currentDate).format('LT'),
                             );
+                            alarmReminder(currentDate);
                           }}
                         />
                       )}
@@ -239,6 +205,7 @@ const Setting = () => {
                               'wakeTime',
                               moment(currentDate).format('LT'),
                             );
+                            alarmReminder(currentDate);
                           }}
                         />
                       )}
